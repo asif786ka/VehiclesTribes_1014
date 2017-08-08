@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="resource"
+            type="shirts.com.roomormshirts.data.Resource" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:resource="@{resource}" />
+
+        <!-- Empty Collection view -->
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="?actionBarSize"
+            android:text="@string/no_shirts_available"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textSizeLarge"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</layout>

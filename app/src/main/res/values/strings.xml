@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Shirts_RoomOrmSolution</string>
+
+    <string name="shirt_name_default">Shirt Name:</string>
+
+    <string name="shirt_color_default">Shirt Color:</string>
+
+    <!-- Shared Elements-->
+    <string name="shared_image">sharedimage</string>
+
+    <!-- Text of the Filter menu icon -->
+    <string name="description_cart">Cart</string>
+
+    <string name="no_shirts_available">No shirts in cart</string>
+
+</resources>

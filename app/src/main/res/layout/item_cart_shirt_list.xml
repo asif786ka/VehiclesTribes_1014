@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="shirt"
+            type="shirts.com.roomormshirts.data.local.entity.CartShirtEntity" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:id="@+id/imageViewCover"
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:transitionName="@string/shared_image"
+            app:url="@{shirt.posterPath}" />
+
+        <ImageView
+            android:id="@+id/imageDelete"
+            android:layout_below="@+id/imageViewCover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_black" />
+
+    </RelativeLayout>
+</layout>
