@@ -1,17 +1,14 @@
 package vehicles.com.roomormcars.data.remote;
 
-import vehicles.com.roomormcars.data.remote.model.ApiResponse;
+import vehicles.com.roomormcars.data.remote.model.VehicleApiResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
 
-public interface ShirtsDBService {
+public interface VehiclesDBService {
 
-    /*@GET("shirts")
-    Call<List<Shirt>> loadShirts();*/
-
-    @GET("/car2go/vehicles.json")
-    Call<ApiResponse> loadShirts();
+    @GET("coding-challenge/locations.json")
+    Call<VehicleApiResponse> loadVehicles();
 
 
 }

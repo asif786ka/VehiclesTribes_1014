@@ -1,12 +1,12 @@
-package shirts.com.roomormshirts.databinding;
+package vehicles.com.roomormcars.databinding;
 
 import android.databinding.BindingAdapter;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
 
-import shirts.com.roomormshirts.data.Resource;
-import shirts.com.roomormshirts.ui.BaseAdapter;
+import vehicles.com.roomormcars.data.Resource;
+import vehicles.com.roomormcars.ui.BaseAdapter;
 
 
 public final class ListBindingAdapter{

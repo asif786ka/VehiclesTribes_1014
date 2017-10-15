@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import android.arch.lifecycle.ViewModel;
 

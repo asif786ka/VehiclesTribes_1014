@@ -25,12 +25,12 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-public class ShirtViewModelFactory implements ViewModelProvider.Factory {
+public class VehicleViewModelFactory implements ViewModelProvider.Factory {
 
     private final Map<Class<? extends ViewModel>, Provider<? extends ViewModel>> creators;
 
     @Inject
-    public ShirtViewModelFactory(Map<Class<? extends ViewModel>, Provider<? extends ViewModel>> creators) {
+    public VehicleViewModelFactory(Map<Class<? extends ViewModel>, Provider<? extends ViewModel>> creators) {
         this.creators = creators;
     }
 

@@ -5,62 +5,64 @@
     <data>
 
         <variable
-            name="shirt"
-            type="vehicles.com.roomormcars.data.local.entity.ShirtsEntity" />
+            name="vehicle"
+            type="vehicles.com.roomormcars.data.local.entity.VehiclesEntity" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="215dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true">
 
+
+
+        <TextView
+            android:id="@+id/vehicleNameDefault"
+            android:layout_below="@drawable/mapicon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vehicle_name_default"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vehicleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicleNameDefault"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:text="@{vehicle.title}" />
+
+        <TextView
+            android:id="@+id/vehicleAddressDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicleName"
+            android:text="@string/vehicle_address_default"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/vehicleAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/vehicleAddressDefault"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:text="@{vehicle.overview}" />
+
         <ImageView
-            android:id="@+id/imageViewCover"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
-            android:transitionName="@string/shared_image"
-            app:url="@{shirt.posterPath}" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/vehicleAddress"
+            android:src="@drawable/mapicon"/>
 
-        <TextView
-            android:id="@+id/shirtNameDefault"
-            android:layout_below="@+id/imageViewCover"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_red_dark"
-            android:text="@string/vehicle_name_default"/>
-
-        <TextView
-            android:id="@+id/shirtName"
-            android:layout_below="@+id/shirtNameDefault"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:text="@{shirt.title}"/>
-
-        <TextView
-            android:id="@+id/shirtColorDefault"
-            android:layout_below="@+id/shirtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/holo_red_dark"
-            android:text="@string/vehicle_address_default"/>
-
-        <TextView
-            android:id="@+id/shirtColor"
-            android:layout_below="@+id/shirtColorDefault"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:text="@{shirt.overview}"/>
 
     </RelativeLayout>
 </layout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,26 +21,24 @@ import javax.inject.Inject;
 
 import dagger.android.support.AndroidSupportInjection;
 import vehicles.com.roomormcars.data.local.CarParcelable;
-import vehicles.com.roomormcars.data.local.entity.CartShirtEntity;
-import vehicles.com.roomormcars.data.local.entity.ShirtsEntity;
-import vehicles.com.roomormcars.databinding.FragmentShirtsListBinding;
+import vehicles.com.roomormcars.data.local.entity.VehiclesEntity;
+import vehicles.com.roomormcars.databinding.FragmentVehiclesListBinding;
 import vehicles.com.roomormcars.ui.maps.MapsActivity;
 
 
-public class ShirtsListFragment extends LifecycleFragment implements ShirtsListCallback {
+public class VehiclesListFragment extends LifecycleFragment implements VehiclesListCallback {
 
     @Inject
-    ShirtsListViewModel ShirtsListViewModel;
+    VehiclesListViewModel VehiclesListViewModel;
 
 
-    FragmentShirtsListBinding binding;
+    FragmentVehiclesListBinding binding;
 
-    CartShirtEntity cartShirtEntity;
+    ArrayList<CarParcelable> carParcelableList = new ArrayList<CarParcelable>();
 
-
-    public static ShirtsListFragment newInstance() {
+    public static VehiclesListFragment newInstance() {
         Bundle args = new Bundle();
-        ShirtsListFragment fragment = new ShirtsListFragment();
+        VehiclesListFragment fragment = new VehiclesListFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,43 +52,53 @@ public class ShirtsListFragment extends LifecycleFragment implements ShirtsListC
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        binding = FragmentShirtsListBinding.inflate(inflater, container, false);
-        binding.recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        binding.recyclerView.setAdapter(new ShirtsListAdapter(this));
+        binding = FragmentVehiclesListBinding.inflate(inflater, container, false);
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.recyclerView.setAdapter(new VehiclesListAdapter(this));
         return binding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ShirtsListViewModel
-                .getShirts()
+        VehiclesListViewModel
+                .getVehicles()
                 .observe(this, listResource -> binding.setResource(listResource));
     }
 
     @Override
-    public void onShirtClicked(ShirtsEntity ShirtsEntity, View sharedView) {
+    public void onResume() {
+        super.onResume();
 
-        ArrayList<CarParcelable> carParcelableList = new ArrayList<CarParcelable>();
+    }
+
+
+    @Override
+    public void onVehicleClicked(VehiclesEntity vehiclesEntity, View sharedView) {
+
+        carParcelableList = getCarsList();
+
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
+        intent.putParcelableArrayListExtra("carList",carParcelableList );
+        intent.putExtra("selectedCar", vehiclesEntity.getId());
+        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+        getActivity().startActivity(intent);
+    }
+
+    public ArrayList<CarParcelable> getCarsList(){
+
 
         Gson gson;
 
-        for(ShirtsEntity car : ShirtsListViewModel.getShirts().getValue().data ){
+        for(VehiclesEntity car : VehiclesListViewModel.getVehicles().getValue().data ){
             gson = new Gson();
             Type type = new TypeToken<List<Double>>(){}.getType();
             List<Double> carsList = gson.fromJson(car.getCoordinatesList(), type);
             carParcelableList.add(new CarParcelable(carsList.get(0),
                     carsList.get(1), car.getTitle(), car.getOverview()));
         }
-        Intent intent = new Intent(getActivity(), MapsActivity.class);
-        intent.putParcelableArrayListExtra("carList",carParcelableList );
-        intent.putExtra("selectedCar", ShirtsEntity.getId());
-        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-        getActivity().startActivity(intent);
+
+        return carParcelableList;
     }
 
-    @Override
-    public void onAddShirtClicked(ShirtsEntity ShirtsEntity, View sharedView) {
-
-    }
 }

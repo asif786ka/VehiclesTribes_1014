@@ -5,23 +5,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
+public class VehiclesPagerAdapter extends FragmentStatePagerAdapter {
 
-public class ShirtsPagerAdapter extends FragmentStatePagerAdapter{
 
-    private static final String[] titles = new String[]{"ShirtsCategory1", "ShirtsCategory2", "ShirtsCategory3"};
+    /*
+      If more categories are required for vehicles.Right now only one category.
+    */
+    private static final String[] titles = new String[]{"VehiclesCategory"};
 
-    public ShirtsPagerAdapter(FragmentManager fm) {
+    public VehiclesPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int i) {
-        return ShirtsListFragment.newInstance();
+        return VehiclesListFragment.newInstance();
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return 1;
     }
 
     @Override

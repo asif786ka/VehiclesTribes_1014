@@ -8,18 +8,18 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-import vehicles.com.roomormcars.data.local.entity.ShirtsEntity;
+import vehicles.com.roomormcars.data.local.entity.VehiclesEntity;
 
 @Dao
-public interface ShirtsDao {
+public interface VehiclesDao {
 
-    @Query("SELECT * FROM shirts")
-    LiveData<List<ShirtsEntity>> loadShirts();
+    @Query("SELECT * FROM vehicles")
+    LiveData<List<VehiclesEntity>> loadVehicles();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveShirts(List<ShirtsEntity> shirtsEntities);
+    void saveVehicles(List<VehiclesEntity> shirtsEntities);
 
-    @Query("SELECT * FROM shirts WHERE id=:id")
-    LiveData<ShirtsEntity> getShirt(int id);
+    @Query("SELECT * FROM vehicles WHERE id=:id")
+    LiveData<VehiclesEntity> getVehicle(int id);
 
 }

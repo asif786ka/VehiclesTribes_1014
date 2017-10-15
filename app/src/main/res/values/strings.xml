@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">Shirts_RoomOrmSolution</string>
+    <string name="app_name">VehiclesTribes_Room_AsifAliKazmi</string>
 
-    <string name="shirt_name_default">Shirt Name:</string>
+    <string name="vehicle_name_default">Vehicle Name:</string>
 
-    <string name="shirt_color_default">Shirt Color:</string>
+    <string name="vehicle_address_default">Vehicle Address:</string>
 
     <!-- Shared Elements-->
     <string name="shared_image">sharedimage</string>
 
-    <!-- Text of the Filter menu icon -->
-    <string name="description_cart">Cart</string>
+    <string name="title_activity_maps">Map</string>
 
-    <string name="no_shirts_available">No shirts in cart</string>
+    <string name="vehicles_list_title">Vehicles List Tribes</string>
+
 
 </resources>

@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.databinding;
+package vehicles.com.roomormcars.databinding;
 
 import android.databinding.BindingAdapter;
 import android.widget.TextView;

@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import android.app.Application;
 
@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
-import shirts.com.roomormshirts.AAApp;
+import vehicles.com.roomormcars.AAApp;
 
 
 @Singleton

@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.ui;
+package vehicles.com.roomormcars.ui;
 
 import android.support.v7.widget.RecyclerView;
 

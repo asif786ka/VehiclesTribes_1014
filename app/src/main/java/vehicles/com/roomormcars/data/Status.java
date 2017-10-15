@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package shirts.com.roomormshirts.data;
+package vehicles.com.roomormcars.data;
 
 /**
  * Status of a resource that is provided to the UI.

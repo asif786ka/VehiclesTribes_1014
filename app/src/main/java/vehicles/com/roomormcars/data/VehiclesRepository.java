@@ -10,77 +10,72 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import vehicles.com.roomormcars.data.local.dao.ShirtsDao;
-import vehicles.com.roomormcars.data.local.entity.ShirtsEntity;
-import vehicles.com.roomormcars.data.remote.ShirtsDBService;
-import vehicles.com.roomormcars.data.remote.model.ApiResponse;
+import vehicles.com.roomormcars.data.local.dao.VehiclesDao;
+import vehicles.com.roomormcars.data.local.entity.VehiclesEntity;
+import vehicles.com.roomormcars.data.remote.VehiclesDBService;
+import vehicles.com.roomormcars.data.remote.model.VehicleApiResponse;
 import retrofit2.Call;
 
 
-public class ShirtsRepository {
+public class VehiclesRepository {
 
-    private final ShirtsDao ShirtsDao;
-    private final ShirtsDBService ShirtsDBService;
+    private final VehiclesDao VehiclesDao;
+    private final VehiclesDBService VehiclesDBService;
 
     @Inject
-    public ShirtsRepository(ShirtsDao ShirtsDao, ShirtsDBService ShirtsDBService) {
-        this.ShirtsDao = ShirtsDao;
-        this.ShirtsDBService = ShirtsDBService;
+    public VehiclesRepository(VehiclesDao VehiclesDao, VehiclesDBService VehiclesDBService) {
+        this.VehiclesDao = VehiclesDao;
+        this.VehiclesDBService = VehiclesDBService;
     }
 
-    public LiveData<Resource<List<ShirtsEntity>>> loadShirts() {
-        return new NetworkBoundResource<List<ShirtsEntity>, ApiResponse>() {
+    public LiveData<Resource<List<VehiclesEntity>>> loadVehicles() {
+        return new NetworkBoundResource<List<VehiclesEntity>, VehicleApiResponse>() {
 
             @NonNull
             @Override
-            protected void saveCallResult(@NonNull ApiResponse item) {
+            protected void saveCallResult(@NonNull VehicleApiResponse item) {
 
 
-                List<ShirtsEntity> songEntities = new ArrayList<ShirtsEntity>();
+                List<VehiclesEntity> vehicleEntities = new ArrayList<VehiclesEntity>();
 
-                //List<ApiResponse.PlaceMarks> songEntities = new ArrayList<ApiResponse.PlaceMarks>();
 
-                ShirtsEntity ShirtsEntity;
+                VehiclesEntity VehiclesEntity;
                 Gson gson;
                 if(item!=null) {
                     for (int i = 0; i < item.getPlaceMarksList().size(); i++) {
-                        ApiResponse.PlaceMarks shirt = item.getPlaceMarksList().get(i);
-                        ShirtsEntity = new ShirtsEntity();
-                        ShirtsEntity.setPosterPath(shirt.getAddress());
-                        ShirtsEntity.setTitle(shirt.getCarName());
-                        ShirtsEntity.setBackdropPath(shirt.getEngineType());
-                        ShirtsEntity.setId(i);
-                        ShirtsEntity.setOverview(shirt.getAddress());
-                        // create a new Gson instance
+                        VehicleApiResponse.PlaceMarks vehicle = item.getPlaceMarksList().get(i);
+                        VehiclesEntity = new VehiclesEntity();
+                        VehiclesEntity.setPosterPath(vehicle.getAddress());
+                        VehiclesEntity.setTitle(vehicle.getCarName());
+                        VehiclesEntity.setBackdropPath(vehicle.getEngineType());
+                        VehiclesEntity.setId(i);
+                        VehiclesEntity.setOverview(vehicle.getAddress());
                         gson = new Gson();
-                        // convert your list to json
-                        String jsonCartList = gson.toJson(shirt.getCoordiatesList());
-                        // print your generated json
-                        System.out.println("jsonCartList: " + jsonCartList);
-                        ShirtsEntity.setCoordinatesList(jsonCartList);
-                        songEntities.add(ShirtsEntity);
+                        String jsonCartList = gson.toJson(vehicle.getCoordiatesList());
+                        VehiclesEntity.setCoordinatesList(jsonCartList);
+                        vehicleEntities.add(VehiclesEntity);
                     }
 
 
-                    ShirtsDao.saveShirts(songEntities);
+                    VehiclesDao.saveVehicles(vehicleEntities);
                 }
             }
 
             @NonNull
             @Override
-            protected LiveData<List<ShirtsEntity>> loadFromDb() {
-                return ShirtsDao.loadShirts();
+            protected LiveData<List<VehiclesEntity>> loadFromDb() {
+                return VehiclesDao.loadVehicles();
             }
 
             @NonNull
             @Override
-            protected Call<ApiResponse> createCall() {
-                return ShirtsDBService.loadShirts();
+            protected Call<VehicleApiResponse> createCall() {
+                return VehiclesDBService.loadVehicles();
             }
         }.getAsLiveData();
     }
 
-    public LiveData<ShirtsEntity> getShirt(int id){
-        return ShirtsDao.getShirt(id);
+    public LiveData<VehiclesEntity> getVehicle(int id){
+        return VehiclesDao.getVehicle(id);
     }
 }

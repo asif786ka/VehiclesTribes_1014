@@ -1,11 +1,11 @@
-package shirts.com.roomormshirts.databinding;
+package vehicles.com.roomormcars.databinding;
 
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import shirts.com.roomormshirts.R;
+import vehicles.com.roomormcars.R;
 
 
 

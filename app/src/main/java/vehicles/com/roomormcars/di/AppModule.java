@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
@@ -9,13 +9,11 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import shirts.com.roomormshirts.data.local.ShirtsDatabase;
-import shirts.com.roomormshirts.data.local.dao.CartShirtDao;
-import shirts.com.roomormshirts.data.local.dao.ShirtsDao;
-import shirts.com.roomormshirts.data.remote.ApiConstants;
-import shirts.com.roomormshirts.data.remote.CartShirtDBService;
-import shirts.com.roomormshirts.data.remote.ShirtsDBService;
-import shirts.com.roomormshirts.data.remote.RequestInterceptor;
+import vehicles.com.roomormcars.data.local.VehiclesDatabase;
+import vehicles.com.roomormcars.data.local.dao.VehiclesDao;
+import vehicles.com.roomormcars.data.remote.ApiConstants;
+import vehicles.com.roomormcars.data.remote.VehiclesDBService;
+import vehicles.com.roomormcars.data.remote.RequestInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,50 +28,35 @@ public class AppModule {
         OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
         okHttpClient.connectTimeout(ApiConstants.TIMEOUT_IN_SEC, TimeUnit.SECONDS);
         okHttpClient.readTimeout(ApiConstants.TIMEOUT_IN_SEC, TimeUnit.SECONDS);
-        okHttpClient.addInterceptor(new RequestInterceptor());
+        //okHttpClient.addInterceptor(new RequestInterceptor());
         return okHttpClient.build();
     }
 
     @Provides
     @Singleton
-    ShirtsDBService provideRetrofit(OkHttpClient okHttpClient) {
+    VehiclesDBService provideRetrofit(OkHttpClient okHttpClient) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiConstants.ENDPOINT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();
 
-        return retrofit.create(ShirtsDBService.class);
+        return retrofit.create(VehiclesDBService.class);
+    }
+
+
+    @Provides
+    @Singleton
+    VehiclesDatabase provideVehicleDatabase(Application application) {
+        return Room.databaseBuilder(application, VehiclesDatabase.class, "aa.db").build();
     }
 
     @Provides
     @Singleton
-    CartShirtDBService provideCartRetrofit(OkHttpClient okHttpClient) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiConstants.ENDPOINT)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
-                .build();
-
-        return retrofit.create(CartShirtDBService.class);
+    VehiclesDao provideVehicleDao(VehiclesDatabase vehiclesDatabase) {
+        return vehiclesDatabase.vehiclesDao();
     }
 
-    @Provides
-    @Singleton
-    ShirtsDatabase provideShirtDatabase(Application application) {
-        return Room.databaseBuilder(application, ShirtsDatabase.class, "aa.db").build();
-    }
 
-    @Provides
-    @Singleton
-    ShirtsDao provideShirtDao(ShirtsDatabase shirtsDatabase) {
-        return shirtsDatabase.shirtsDao();
-    }
-
-    @Provides
-    @Singleton
-    CartShirtDao provideCartShirtDao(ShirtsDatabase shirtsDatabase) {
-        return shirtsDatabase.cartShirtsDao();
-    }
 
 }

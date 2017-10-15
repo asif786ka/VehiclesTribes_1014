@@ -7,20 +7,20 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import vehicles.com.roomormcars.data.ShirtsRepository;
+import vehicles.com.roomormcars.data.VehiclesRepository;
 import vehicles.com.roomormcars.data.Resource;
-import vehicles.com.roomormcars.data.local.entity.ShirtsEntity;
+import vehicles.com.roomormcars.data.local.entity.VehiclesEntity;
 
 
-public class ShirtsListViewModel extends ViewModel {
-    private final LiveData<Resource<List<ShirtsEntity>>> shirts;
+public class VehiclesListViewModel extends ViewModel {
+    private final LiveData<Resource<List<VehiclesEntity>>> vehicles;
 
     @Inject
-    public ShirtsListViewModel(ShirtsRepository ShirtsRepository) {
-        shirts = ShirtsRepository.loadShirts();
+    public VehiclesListViewModel(VehiclesRepository VehiclesRepository) {
+        vehicles = VehiclesRepository.loadVehicles();
     }
 
-    public LiveData<Resource<List<ShirtsEntity>>> getShirts() {
-        return shirts;
+    public LiveData<Resource<List<VehiclesEntity>>> getVehicles() {
+        return vehicles;
     }
 }

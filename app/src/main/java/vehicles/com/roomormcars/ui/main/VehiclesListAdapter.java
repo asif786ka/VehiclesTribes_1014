@@ -3,69 +3,68 @@ package vehicles.com.roomormcars.ui.main;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import vehicles.com.roomormcars.data.local.entity.ShirtsEntity;
-import vehicles.com.roomormcars.databinding.ItemShirtListBinding;
+import vehicles.com.roomormcars.data.local.entity.VehiclesEntity;
+import vehicles.com.roomormcars.databinding.ItemVehicleListBinding;
 import vehicles.com.roomormcars.ui.BaseAdapter;
 
 
 
-public class ShirtsListAdapter extends BaseAdapter<ShirtsListAdapter.ShirtViewHolder, ShirtsEntity> {
+public class VehiclesListAdapter extends BaseAdapter<VehiclesListAdapter.VehicleViewHolder, VehiclesEntity> {
 
-    private List<ShirtsEntity> shirtsEntities;
+    private List<VehiclesEntity> vehiclesEntities;
 
-    private final ShirtsListCallback ShirtsListCallback;
+    private final VehiclesListCallback VehiclesListCallback;
 
-    public ShirtsListAdapter(@NonNull ShirtsListCallback ShirtsListCallback) {
-        shirtsEntities = new ArrayList<>();
-        this.ShirtsListCallback = ShirtsListCallback;
+    public VehiclesListAdapter(@NonNull VehiclesListCallback VehiclesListCallback) {
+        vehiclesEntities = new ArrayList<>();
+        this.VehiclesListCallback = VehiclesListCallback;
     }
 
     @Override
-    public void setData(List<ShirtsEntity> shirtEntities) {
-        this.shirtsEntities = shirtEntities;
+    public void setData(List<VehiclesEntity> shirtEntities) {
+        this.vehiclesEntities = shirtEntities;
         notifyDataSetChanged();
     }
 
     @Override
-    public ShirtViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return ShirtViewHolder.create(LayoutInflater.from(viewGroup.getContext()), viewGroup, ShirtsListCallback);
+    public VehicleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return VehicleViewHolder.create(LayoutInflater.from(viewGroup.getContext()), viewGroup, VehiclesListCallback);
     }
 
     @Override
-    public void onBindViewHolder(ShirtViewHolder viewHolder, int i) {
-        viewHolder.onBind(shirtsEntities.get(i));
+    public void onBindViewHolder(VehicleViewHolder viewHolder, int i) {
+        viewHolder.onBind(vehiclesEntities.get(i));
     }
 
     @Override
     public int getItemCount() {
-        return shirtsEntities.size();
+        return vehiclesEntities.size();
     }
 
-    static class ShirtViewHolder extends RecyclerView.ViewHolder {
+    static class VehicleViewHolder extends RecyclerView.ViewHolder {
 
-        public static ShirtViewHolder create(LayoutInflater inflater, ViewGroup parent, ShirtsListCallback callback) {
-            ItemShirtListBinding itemShirtListBinding = ItemShirtListBinding.inflate(inflater, parent, false);
-            return new ShirtViewHolder(itemShirtListBinding, callback);
+        public static VehicleViewHolder create(LayoutInflater inflater, ViewGroup parent, VehiclesListCallback callback) {
+            ItemVehicleListBinding itemVehicleListBinding = ItemVehicleListBinding.inflate(inflater, parent, false);
+            return new VehicleViewHolder(itemVehicleListBinding, callback);
         }
 
-        ItemShirtListBinding binding;
+        ItemVehicleListBinding binding;
 
-        public ShirtViewHolder(ItemShirtListBinding binding, ShirtsListCallback callback) {
+        public VehicleViewHolder(ItemVehicleListBinding binding, VehiclesListCallback callback) {
             super(binding.getRoot());
             this.binding = binding;
-            binding.imageViewCover.setOnClickListener(v ->
-                    callback.onShirtClicked(binding.getShirt(), binding.imageViewCover));
-            binding.shirtColor.setVisibility(View.VISIBLE);
+
+            binding.getRoot().setOnClickListener(v ->
+                    callback.onVehicleClicked(binding.getVehicle(), binding.getRoot()));;
         }
 
-        public void onBind(ShirtsEntity ShirtsEntity) {
-            binding.setShirt(ShirtsEntity);
+        public void onBind(VehiclesEntity VehiclesEntity) {
+            binding.setVehicle(VehiclesEntity);
             binding.executePendingBindings();
         }
     }

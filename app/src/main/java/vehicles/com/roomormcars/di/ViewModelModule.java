@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModelProvider;
 import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
-import shirts.com.roomormshirts.ui.main.ShirtsListViewModel;
-import shirts.com.roomormshirts.viewmodel.ShirtViewModelFactory;
+import vehicles.com.roomormcars.ui.main.VehiclesListViewModel;
+import vehicles.com.roomormcars.viewmodel.VehicleViewModelFactory;
 
 
 
@@ -16,9 +16,9 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ShirtsListViewModel.class)
-    abstract ViewModel bindsShirtsListViewModel(ShirtsListViewModel ShirtsListViewModel);
+    @ViewModelKey(VehiclesListViewModel.class)
+    abstract ViewModel bindsVehiclesListViewModel(VehiclesListViewModel VehiclesListViewModel);
 
     @Binds
-    abstract ViewModelProvider.Factory bindsViewModelFactory(ShirtViewModelFactory ShirtViewModelFactory);
+    abstract ViewModelProvider.Factory bindsViewModelFactory(VehicleViewModelFactory VehicleViewModelFactory);
 }

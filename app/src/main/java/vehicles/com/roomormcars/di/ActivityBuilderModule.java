@@ -1,9 +1,9 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import shirts.com.roomormshirts.ui.main.MainActivity;
-import shirts.com.roomormshirts.ui.maps.MapsActivity;
+import vehicles.com.roomormcars.ui.main.MainActivity;
+import vehicles.com.roomormcars.ui.maps.MapsActivity;
 
 
 @Module

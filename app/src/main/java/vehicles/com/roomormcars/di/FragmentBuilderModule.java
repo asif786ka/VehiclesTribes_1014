@@ -1,13 +1,13 @@
-package shirts.com.roomormshirts.di;
+package vehicles.com.roomormcars.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import shirts.com.roomormshirts.ui.main.ShirtsListFragment;
+import vehicles.com.roomormcars.ui.main.VehiclesListFragment;
 
 
 @Module
 public abstract class FragmentBuilderModule {
 
     @ContributesAndroidInjector
-    abstract ShirtsListFragment contributeShirtListFragment();
+    abstract VehiclesListFragment contributeVehiclesListFragment();
 }

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package shirts.com.roomormshirts.data;
+package vehicles.com.roomormcars.data;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import static shirts.com.roomormshirts.data.Status.ERROR;
-import static shirts.com.roomormshirts.data.Status.LOADING;
-import static shirts.com.roomormshirts.data.Status.SUCCESS;
+import static vehicles.com.roomormcars.data.Status.ERROR;
+import static vehicles.com.roomormcars.data.Status.LOADING;
+import static vehicles.com.roomormcars.data.Status.SUCCESS;
 
 
 /**

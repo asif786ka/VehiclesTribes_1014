@@ -1,4 +1,4 @@
-package shirts.com.roomormshirts.data.remote;
+package vehicles.com.roomormcars.data.remote;
 
 import android.support.annotation.NonNull;
 
